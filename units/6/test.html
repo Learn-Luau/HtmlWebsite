@@ -1,0 +1,1028 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Unit 6 Test: Control Structures - Roblox Lua Learning Platform</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Fira+Code:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/monaco-editor/0.36.1/min/vs/editor/editor.main.min.css">
+  <style>
+    :root {
+      --background: #ffffff;
+      --foreground: #0f172a;
+      --muted: #f1f5f9;
+      --muted-foreground: #64748b;
+      --primary: #0ea5e9;
+      --primary-foreground: #f8fafc;
+      --card: #ffffff;
+      --card-foreground: #0f172a;
+      --border: #e2e8f0;
+      --green-500: #22c55e;
+      --green-700: #15803d;
+      --green-300: #86efac;
+      --green-50: #f0fdf4;
+      --red-500: #ef4444;
+      --red-700: #b91c1c;
+      --red-300: #fca5a5;
+      --red-50: #fef2f2;
+    }
+
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --background: #0f172a;
+        --foreground: #f8fafc;
+        --muted: #1e293b;
+        --muted-foreground: #94a3b8;
+        --primary: #0ea5e9;
+        --primary-foreground: #f8fafc;
+        --card: #1e293b;
+        --card-foreground: #f8fafc;
+        --border: #334155;
+        --green-500: #22c55e;
+        --green-700: #dcfce7;
+        --green-300: #22c55e;
+        --green-50: #065f46;
+        --red-500: #ef4444;
+        --red-700: #fecaca;
+        --red-300: #ef4444;
+        --red-50: #7f1d1d;
+      }
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background-color: var(--background);
+      color: var(--foreground);
+      line-height: 1.5;
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 2rem 1rem;
+    }
+
+    .mb-6 {
+      margin-bottom: 1.5rem;
+    }
+
+    .mb-8 {
+      margin-bottom: 2rem;
+    }
+
+    .mb-2 {
+      margin-bottom: 0.5rem;
+    }
+
+    .mb-4 {
+      margin-bottom: 1rem;
+    }
+
+    .mt-4 {
+      margin-top: 1rem;
+    }
+
+    .text-3xl {
+      font-size: 1.875rem;
+      line-height: 2.25rem;
+    }
+
+    .text-2xl {
+      font-size: 1.5rem;
+      line-height: 2rem;
+    }
+
+    .text-xl {
+      font-size: 1.25rem;
+      line-height: 1.75rem;
+    }
+
+    .text-lg {
+      font-size: 1.125rem;
+      line-height: 1.75rem;
+    }
+
+    .text-sm {
+      font-size: 0.875rem;
+      line-height: 1.25rem;
+    }
+
+    .text-center {
+      text-align: center;
+    }
+
+    .font-bold {
+      font-weight: 700;
+    }
+
+    .font-semibold {
+      font-weight: 600;
+    }
+
+    .font-medium {
+      font-weight: 500;
+    }
+
+    .text-muted-foreground {
+      color: var(--muted-foreground);
+    }
+
+    .text-green-500 {
+      color: var(--green-500);
+    }
+
+    .text-green-700 {
+      color: var(--green-700);
+    }
+
+    .text-green-300 {
+      color: var(--green-300);
+    }
+
+    .text-red-500 {
+      color: var(--red-500);
+    }
+
+    .text-red-700 {
+      color: var(--red-700);
+    }
+
+    .text-red-300 {
+      color: var(--red-300);
+    }
+
+    .bg-green-50 {
+      background-color: var(--green-50);
+    }
+
+    .bg-red-50 {
+      background-color: var(--red-50);
+    }
+
+    .flex {
+      display: flex;
+    }
+
+    .items-center {
+      align-items: center;
+    }
+
+    .justify-center {
+      justify-content: center;
+    }
+
+    .justify-between {
+      justify-content: space-between;
+    }
+
+    .gap-4 {
+      gap: 1rem;
+    }
+
+    .gap-2 {
+      gap: 0.5rem;
+    }
+
+    .w-full {
+      width: 100%;
+    }
+
+    .max-w-2xl {
+      max-width: 42rem;
+    }
+
+    .mx-auto {
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .h-2 {
+      height: 0.5rem;
+    }
+
+    .h-6 {
+      height: 1.5rem;
+    }
+
+    .w-6 {
+      width: 1.5rem;
+    }
+
+    .h-8 {
+      height: 2rem;
+    }
+
+    .w-8 {
+      width: 2rem;
+    }
+
+    .flex-1 {
+      flex: 1 1 0%;
+    }
+
+    .rounded-lg {
+      border-radius: 0.5rem;
+    }
+
+    .rounded-md {
+      border-radius: 0.375rem;
+    }
+
+    .p-6 {
+      padding: 1.5rem;
+    }
+
+    .p-3 {
+      padding: 0.75rem;
+    }
+
+    .p-4 {
+      padding: 1rem;
+    }
+
+    .pb-2 {
+      padding-bottom: 0.5rem;
+    }
+
+    .border-b {
+      border-bottom: 1px solid var(--border);
+    }
+
+    .space-y-4 > * + * {
+      margin-top: 1rem;
+    }
+
+    .space-y-2 > * + * {
+      margin-top: 0.5rem;
+    }
+
+    .progress {
+      background-color: var(--muted);
+      border-radius: 9999px;
+      height: 0.5rem;
+      overflow: hidden;
+    }
+
+    .progress-bar {
+      background-color: var(--primary);
+      height: 100%;
+      border-radius: 9999px;
+    }
+
+    .card {
+      background-color: var(--card);
+      color: var(--card-foreground);
+      border-radius: 0.5rem;
+      border: 1px solid var(--border);
+      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+    }
+
+    .card-header {
+      padding: 1.5rem 1.5rem 0.75rem 1.5rem;
+    }
+
+    .card-title {
+      font-size: 1.25rem;
+      font-weight: 600;
+      margin-bottom: 0.25rem;
+    }
+
+    .card-description {
+      color: var(--muted-foreground);
+    }
+
+    .card-content {
+      padding: 0 1.5rem 1.5rem 1.5rem;
+    }
+
+    .card-footer {
+      padding: 1.5rem;
+      border-top: 1px solid var(--border);
+      display: flex;
+      justify-content: space-between;
+    }
+
+    .button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 0.375rem;
+      font-weight: 500;
+      padding: 0.5rem 1rem;
+      background-color: var(--primary);
+      color: var(--primary-foreground);
+      border: none;
+      cursor: pointer;
+      transition: background-color 0.2s;
+      text-decoration: none;
+    }
+
+    .button:hover {
+      background-color: #0284c7;
+    }
+
+    .button:disabled {
+      opacity: 0.5;
+      cursor: not-allowed;
+    }
+
+    .button-outline {
+      background-color: transparent;
+      color: var(--foreground);
+      border: 1px solid var(--border);
+    }
+
+    .button-outline:hover {
+      background-color: var(--muted);
+    }
+
+    .button-icon {
+      padding: 0;
+      width: 2rem;
+      height: 2rem;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .button-ghost {
+      background-color: transparent;
+      color: var(--foreground);
+      border: none;
+    }
+
+    .button-ghost:hover {
+      background-color: var(--muted);
+    }
+
+    .icon {
+      width: 1rem;
+      height: 1rem;
+      display: inline-block;
+    }
+
+    .mr-2 {
+      margin-right: 0.5rem;
+    }
+
+    .ml-2 {
+      margin-left: 0.5rem;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    .back-link {
+      display: flex;
+      align-items: center;
+      color: var(--muted-foreground);
+      margin-bottom: 1.5rem;
+    }
+
+    .back-link:hover {
+      color: var(--foreground);
+      text-decoration: none;
+    }
+
+    .option {
+      padding: 0.75rem;
+      border: 1px solid var(--border);
+      border-radius: 0.375rem;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+
+    .option:hover {
+      background-color: var(--muted);
+    }
+
+    .option.selected {
+      background-color: rgba(14, 165, 233, 0.1);
+      border-color: var(--primary);
+    }
+
+    .editor-container {
+      border: 1px solid var(--border);
+      border-radius: 0.5rem;
+      overflow: hidden;
+      height: 200px;
+    }
+
+    .output-container {
+      background-color: #000;
+      color: #fff;
+      padding: 1rem;
+      border-radius: 0.5rem;
+      font-family: 'Fira Code', monospace;
+      font-size: 0.875rem;
+      max-height: 200px;
+      overflow-y: auto;
+    }
+
+    .question-nav {
+      display: flex;
+      justify-content: center;
+      gap: 0.5rem;
+      margin-top: 1.5rem;
+    }
+
+    .result-section {
+      text-align: center;
+      padding: 1.5rem;
+      border-radius: 0.5rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .result-section.passed {
+      background-color: var(--green-50);
+    }
+
+    .result-section.failed {
+      background-color: var(--red-50);
+    }
+
+    .hidden {
+      display: none;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <a href="../6.html" class="back-link">
+      <svg xmlns="http://www.w3.org/2000/svg" class="icon mr-2" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <line x1="19" y1="12" x2="5" y2="12"></line>
+        <polyline points="12 19 5 12 12 5"></polyline>
+      </svg>
+      Back to Unit 6
+    </a>
+
+    <!-- Test Questions Section -->
+    <div id="test-section">
+      <div class="mb-6">
+        <h1 class="text-3xl font-bold mb-2">Unit Test: Control Structures</h1>
+        <div class="flex items-center gap-4">
+          <div class="progress flex-1">
+            <div class="progress-bar" id="progress-bar" style="width: 0%"></div>
+          </div>
+          <span class="text-sm" id="question-counter">Question 1 of 4</span>
+        </div>
+      </div>
+
+      <div class="card mb-6">
+        <!-- Question 1 -->
+        <div class="question" id="question-1">
+          <div class="card-header">
+            <div class="card-title">Question 1</div>
+            <div class="card-description">Which keyword is used to start an if statement in Lua?</div>
+          </div>
+          <div class="card-content">
+            <div class="space-y-2">
+              <div class="option" data-value="if" onclick="selectOption(this, 1)">if</div>
+              <div class="option" data-value="when" onclick="selectOption(this, 1)">when</div>
+              <div class="option" data-value="check" onclick="selectOption(this, 1)">check</div>
+              <div class="option" data-value="condition" onclick="selectOption(this, 1)">condition</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Question 2 -->
+        <div class="question hidden" id="question-2">
+          <div class="card-header">
+            <div class="card-title">Question 2</div>
+            <div class="card-description">What symbol is used for 'not equal to' in Lua?</div>
+          </div>
+          <div class="card-content">
+            <div class="space-y-2">
+              <div class="option" data-value="!=" onclick="selectOption(this, 2)">!=</div>
+              <div class="option" data-value="<>" onclick="selectOption(this, 2)"><></div>
+              <div class="option" data-value="~=" onclick="selectOption(this, 2)">~=</div>
+              <div class="option" data-value="/=" onclick="selectOption(this, 2)">/=</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Question 3 (Coding) -->
+        <div class="question hidden" id="question-3">
+          <div class="card-header">
+            <div class="card-title">Question 3: Coding Challenge</div>
+            <div class="card-description">Write a function that returns 'Pass' if the score is 70 or higher, otherwise return 'Fail'.</div>
+          </div>
+          <div class="card-content">
+            <div class="space-y-4">
+              <div class="editor-container" id="editor"></div>
+              
+              <div id="test-results-container" class="hidden space-y-2">
+                <div class="font-medium">Test Results:</div>
+                <div class="output-container" id="test-output"></div>
+              </div>
+              
+              <button class="button w-full" id="run-tests">Run Tests</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Question 4 -->
+        <div class="question hidden" id="question-4">
+          <div class="card-header">
+            <div class="card-title">Question 4</div>
+            <div class="card-description">Which of the following is NOT a valid comparison operator in Lua?</div>
+          </div>
+          <div class="card-content">
+            <div class="space-y-2">
+              <div class="option" data-value="==" onclick="selectOption(this, 4)">==</div>
+              <div class="option" data-value="<=" onclick="selectOption(this, 4)"><=</div>
+              <div class="option" data-value=">=" onclick="selectOption(this, 4)">>=</div>
+              <div class="option" data-value="=>" onclick="selectOption(this, 4)">=></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="card-footer">
+          <button class="button button-outline" id="prev-button" onclick="prevQuestion()" disabled>Previous</button>
+          <button class="button" id="next-button" onclick="nextQuestion()" disabled>Next</button>
+        </div>
+      </div>
+
+      <div class="question-nav">
+        <button class="button button-icon" onclick="goToQuestion(1)">1</button>
+        <button class="button button-ghost button-icon" onclick="goToQuestion(2)">2</button>
+        <button class="button button-ghost button-icon" onclick="goToQuestion(3)">3</button>
+        <button class="button button-ghost button-icon" onclick="goToQuestion(4)">4</button>
+      </div>
+
+      <div class="flex justify-center mt-4">
+        <button class="button" id="submit-test" onclick="submitTest()" disabled>Submit Test</button>
+      </div>
+    </div>
+
+    <!-- Results Section (Initially Hidden) -->
+    <div id="results-section" class="hidden">
+      <div class="card max-w-2xl mx-auto">
+        <div class="card-header">
+          <div class="card-title text-2xl">Unit Test Results</div>
+          <div class="card-description">Unit 6: Control Structures</div>
+        </div>
+        <div class="card-content">
+          <div id="result-summary" class="result-section">
+            <div class="text-5xl font-bold mb-2" id="score-display">0/4</div>
+            <div class="text-2xl font-semibold mb-4" id="percentage-display">0%</div>
+            <div class="flex justify-center items-center">
+              <div id="pass-indicator" class="hidden">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-green-500 mr-2" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
+                  <polyline points="22 4 12 14.01 9 11.01"></polyline>
+                </svg>
+                <span class="text-xl font-medium text-green-700">Passed!</span>
+              </div>
+              <div id="fail-indicator" class="hidden">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-red-500 mr-2" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <circle cx="12" cy="12" r="10"></circle>
+                  <line x1="15" y1="9" x2="9" y2="15"></line>
+                  <line x1="9" y1="9" x2="15" y2="15"></line>
+                </svg>
+                <span class="text-xl font-medium text-red-700">Failed</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="space-y-4">
+            <h3 class="font-semibold text-lg">Question Summary:</h3>
+            <div id="question-summary"></div>
+          </div>
+        </div>
+        <div class="card-footer">
+          <div class="w-full flex justify-between">
+            <a href="../6.html">
+              <button class="button button-outline">Return to Unit</button>
+            </a>
+            <button id="retry-button" class="button hidden">Retry Test</button>
+            <a href="../../index.html" id="continue-button" class="hidden">
+              <button class="button">Continue Learning</button>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/monaco-editor/0.36.1/min/vs/loader.min.js"></script>
+  <script>
+    // Test data
+    const testData = {
+      questions: [
+        {
+          id: 1,
+          type: "multiple-choice",
+          question: "Which keyword is used to start an if statement in Lua?",
+          options: ["if", "when", "check", "condition"],
+          correctAnswer: "if"
+        },
+        {
+          id: 2,
+          type: "multiple-choice",
+          question: "What symbol is used for 'not equal to' in Lua?",
+          options: ["!=", "<>", "~=", "/="],
+          correctAnswer: "~="
+        },
+        {
+          id: 3,
+          type: "coding",
+          question: "Write a function that returns 'Pass' if the score is 70 or higher, otherwise return 'Fail'.",
+          initialCode: `function checkScore(score)
+  -- Write your code here
+  
+  return "Unknown"
+end`,
+          solution: `function checkScore(score)
+  if score >= 70 then
+    return "Pass"
+  else
+    return "Fail"
+  end
+end`,
+          testCases: [
+            { input: 85, expected: "Pass" },
+            { input: 70, expected: "Pass" },
+            { input: 65, expected: "Fail" }
+          ]
+        },
+        {
+          id: 4,
+          type: "multiple-choice",
+          question: "Which of the following is NOT a valid comparison operator in Lua?",
+          options: ["==", "<=", ">=", "=>"],
+          correctAnswer: "=>"
+        }
+      ]
+    };
+
+    // State variables
+    let currentQuestion = 1;
+    let answers = {};
+    let codingAnswers = {};
+    let codingResults = {};
+    let editor;
+    const totalQuestions = testData.questions.length;
+
+    // Initialize the test
+    function initTest() {
+      updateProgressBar();
+      updateQuestionCounter();
+      updateNavButtons();
+    }
+
+    // Update progress bar
+    function updateProgressBar() {
+      const progress = ((currentQuestion - 1) / totalQuestions) * 100;
+      document.getElementById('progress-bar').style.width = `${progress}%`;
+    }
+
+    // Update question counter
+    function updateQuestionCounter() {
+      document.getElementById('question-counter').textContent = `Question ${currentQuestion} of ${totalQuestions}`;
+    }
+
+    // Update navigation buttons
+    function updateNavButtons() {
+      const prevButton = document.getElementById('prev-button');
+      const nextButton = document.getElementById('next-button');
+      const submitButton = document.getElementById('submit-test');
+      
+      // Previous button
+      prevButton.disabled = currentQuestion === 1;
+      
+      // Next button
+      const currentQuestionData = testData.questions[currentQuestion - 1];
+      let isAnswered = false;
+      
+      if (currentQuestionData.type === 'multiple-choice') {
+        isAnswered = !!answers[currentQuestionData.id];
+      } else if (currentQuestionData.type === 'coding') {
+        isAnswered = !!codingAnswers[currentQuestionData.id];
+      }
+      
+      nextButton.disabled = !isAnswered;
+      
+      // Submit button
+      const allAnswered = testData.questions.every(q => {
+        if (q.type === 'multiple-choice') {
+          return !!answers[q.id];
+        } else if (q.type === 'coding') {
+          return !!codingAnswers[q.id];
+        }
+        return false;
+      });
+      
+      submitButton.disabled = !allAnswered;
+    }
+
+    // Select an option for multiple choice questions
+    function selectOption(element, questionId) {
+      // Remove selected class from all options in this question
+      const options = document.querySelectorAll(`#question-${questionId} .option`);
+      options.forEach(opt => opt.classList.remove('selected'));
+      
+      // Add selected class to clicked option
+      element.classList.add('selected');
+      
+      // Save the answer
+      answers[questionId] = element.getAttribute('data-value');
+      
+      // Update navigation buttons
+      updateNavButtons();
+    }
+
+    // Go to next question
+    function nextQuestion() {
+      if (currentQuestion < totalQuestions) {
+        // Hide current question
+        document.getElementById(`question-${currentQuestion}`).classList.add('hidden');
+        
+        // Show next question
+        currentQuestion++;
+        document.getElementById(`question-${currentQuestion}`).classList.remove('hidden');
+        
+        // Update UI
+        updateProgressBar();
+        updateQuestionCounter();
+        updateNavButtons();
+        updateQuestionNav();
+      }
+    }
+
+    // Go to previous question
+    function prevQuestion() {
+      if (currentQuestion > 1) {
+        // Hide current question
+        document.getElementById(`question-${currentQuestion}`).classList.add('hidden');
+        
+        // Show previous question
+        currentQuestion--;
+        document.getElementById(`question-${currentQuestion}`).classList.remove('hidden');
+        
+        // Update UI
+        updateProgressBar();
+        updateQuestionCounter();
+        updateNavButtons();
+        updateQuestionNav();
+      }
+    }
+
+    // Go to specific question
+    function goToQuestion(questionNumber) {
+      // Hide current question
+      document.getElementById(`question-${currentQuestion}`).classList.add('hidden');
+      
+      // Show selected question
+      currentQuestion = questionNumber;
+      document.getElementById(`question-${currentQuestion}`).classList.remove('hidden');
+      
+      // Update UI
+      updateProgressBar();
+      updateQuestionCounter();
+      updateNavButtons();
+      updateQuestionNav();
+    }
+
+    // Update question navigation buttons
+    function updateQuestionNav() {
+      const navButtons = document.querySelectorAll('.question-nav button');
+      
+      navButtons.forEach((button, index) => {
+        // Reset all buttons
+        button.className = 'button button-ghost button-icon';
+        
+        // Current question button
+        if (index + 1 === currentQuestion) {
+          button.className = 'button button-icon';
+        }
+        
+        // Answered questions
+        const questionId = index + 1;
+        const question = testData.questions[index];
+        
+        if (question.type === 'multiple-choice' && answers[questionId]) {
+          button.className = 'button button-outline button-icon';
+        } else if (question.type === 'coding' && codingAnswers[questionId]) {
+          button.className = 'button button-outline button-icon';
+        }
+      });
+    }
+
+    // Run tests for coding question
+    function runTests() {
+      const code = editor.getValue();
+      const testOutput = document.getElementById('test-output');
+      const testResultsContainer = document.getElementById('test-results-container');
+      
+      // Show test results container
+      testResultsContainer.classList.remove('hidden');
+      
+      // Clear previous output
+      testOutput.innerHTML = '';
+      
+      // Get current coding question
+      const question = testData.questions.find(q => q.id === 3); // Hardcoded for this example
+      
+      // Save the code
+      codingAnswers[question.id] = code;
+      
+      // Run tests
+      const results = [];
+      const outputs = [];
+      
+      try {
+        // Check for syntax errors
+        if (code.includes('function') && !code.includes('end')) {
+          outputs.push(`lua: [string "chunk"]:1: 'end' expected (to close 'function' at line 1) near '<eof>'`);
+          question.testCases.forEach(() => results.push(false));
+        } else {
+          // Run each test case
+          question.testCases.forEach((testCase, index) => {
+            try {
+              // Very basic simulation - in reality you'd use a Lua interpreter
+              let result = "Unknown";
+              
+              // Simulate the function execution
+              if (code.includes('if score >= 70') && testCase.input >= 70) {
+                result = code.includes('Pass') ? 'Pass' : 'Unknown';
+              } else if (code.includes('else') && testCase.input < 70) {
+                result = code.includes('Fail') ? 'Fail' : 'Unknown';
+              }
+              
+              // Add the output
+              outputs.push(`Test ${index + 1} (input: ${testCase.input}): ${result}`);
+              
+              // Check if the result matches the expected output
+              const passed = result === testCase.expected;
+              results.push(passed);
+              
+              if (!passed) {
+                outputs.push(`  Expected: "${testCase.expected}", got: "${result}"`);
+              }
+            } catch (error) {
+              results.push(false);
+              outputs.push(`Test ${index + 1} error: ${error.message || 'Unknown error'}`);
+            }
+          });
+        }
+      } catch (error) {
+        outputs.push(`lua: [string "chunk"]:1: ${error.message || 'unexpected error'}`);
+        question.testCases.forEach(() => results.push(false));
+      }
+      
+      // Display outputs
+      outputs.forEach(output => {
+        const line = document.createElement('div');
+        line.textContent = output;
+        testOutput.appendChild(line);
+      });
+      
+      // Save results
+      codingResults[question.id] = results;
+      
+      // Update navigation buttons
+      updateNavButtons();
+      updateQuestionNav();
+    }
+
+    // Submit the test
+    function submitTest() {
+      // Calculate score
+      const result = calculateScore();
+      
+      // Update result display
+      document.getElementById('score-display').textContent = `${result.score}/${result.total}`;
+      document.getElementById('percentage-display').textContent = `${result.percentage}%`;
+      
+      // Show pass/fail indicator
+      if (result.passed) {
+        document.getElementById('pass-indicator').classList.remove('hidden');
+        document.getElementById('continue-button').classList.remove('hidden');
+        document.getElementById('result-summary').classList.add('passed');
+      } else {
+        document.getElementById('fail-indicator').classList.remove('hidden');
+        document.getElementById('retry-button').classList.remove('hidden');
+        document.getElementById('result-summary').classList.add('failed');
+      }
+      
+      // Generate question summary
+      const summaryContainer = document.getElementById('question-summary');
+      summaryContainer.innerHTML = '';
+      
+      testData.questions.forEach((q, index) => {
+        const isCorrect = q.type === 'multiple-choice' 
+          ? answers[q.id] === q.correctAnswer
+          : codingResults[q.id]?.every(r => r);
+        
+        const summaryItem = document.createElement('div');
+        summaryItem.className = 'flex items-center justify-between border-b pb-2';
+        summaryItem.innerHTML = `
+          <div>Question ${index + 1}: ${q.type === 'coding' ? 'Coding Challenge' : q.question.substring(0, 30) + '...'}</div>
+          <div>
+            ${isCorrect 
+              ? '<svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-green-500" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg>'
+              : '<svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-red-500" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><line x1="15" y1="9" x2="9" y2="15"></line><line x1="9" y1="9" x2="15" y2="15"></line></svg>'
+            }
+          </div>
+        `;
+        
+        summaryContainer.appendChild(summaryItem);
+      });
+      
+      // Hide test section and show results section
+      document.getElementById('test-section').classList.add('hidden');
+      document.getElementById('results-section').classList.remove('hidden');
+    }
+
+    // Calculate test score
+    function calculateScore() {
+      let correct = 0;
+      
+      testData.questions.forEach(q => {
+        if (q.type === 'multiple-choice' && answers[q.id] === q.correctAnswer) {
+          correct++;
+        } else if (q.type === 'coding' && codingResults[q.id]?.every(r => r)) {
+          correct++;
+        }
+      });
+      
+      const percentage = Math.round((correct / totalQuestions) * 100);
+      
+      return {
+        score: correct,
+        total: totalQuestions,
+        percentage: percentage,
+        passed: percentage >= 70
+      };
+    }
+
+    // Retry the test
+    document.getElementById('retry-button').addEventListener('click', function() {
+      // Reset state
+      answers = {};
+      codingAnswers = {};
+      codingResults = {};
+      currentQuestion = 1;
+      
+      // Reset UI
+      document.querySelectorAll('.option').forEach(opt => opt.classList.remove('selected'));
+      document.querySelectorAll('.question').forEach((q, i) => {
+        if (i === 0) {
+          q.classList.remove('hidden');
+        } else {
+          q.classList.add('hidden');
+        }
+      });
+      
+      // Reset editor
+      if (editor) {
+        editor.setValue(testData.questions.find(q => q.id === 3).initialCode);
+      }
+      
+      // Hide results section and show test section
+      document.getElementById('results-section').classList.add('hidden');
+      document.getElementById('test-section').classList.remove('hidden');
+      
+      // Update UI
+      initTest();
+      updateQuestionNav();
+    });
+
+    // Initialize Monaco editor
+    require.config({ paths: { 'vs': 'https://cdnjs.cloudflare.com/ajax/libs/monaco-editor/0.36.1/min/vs' }});
+    require(['vs/editor/editor.main'], function() {
+      // Get coding question
+      const codingQuestion = testData.questions.find(q => q.type === 'coding');
+      
+      // Create editor
+      editor = monaco.editor.create(document.getElementById('editor'), {
+        value: codingQuestion.initialCode,
+        language: 'lua',
+        theme: window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? 'vs-dark' : 'vs',
+        minimap: { enabled: true },
+        scrollBeyondLastLine: false,
+        automaticLayout: true,
+        fontSize: 14,
+        fontFamily: "'Fira Code', Menlo, Monaco, 'Courier New', monospace",
+      });
+      
+      // Run tests button
+      document.getElementById('run-tests').addEventListener('click', runTests);
+    });
+
+    // Initialize the test when the page loads
+    window.addEventListener('load', function() {
+      initTest();
+    });
+  </script>
+</body>
+</html>
