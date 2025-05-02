@@ -1,0 +1,631 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Lesson 1: if "condition" then - Roblox Lua Learning Platform</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Fira+Code:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/monaco-editor/0.36.1/min/vs/editor/editor.main.min.css">
+  <style>
+    :root {
+      --background: #ffffff;
+      --foreground: #0f172a;
+      --muted: #f1f5f9;
+      --muted-foreground: #64748b;
+      --primary: #0ea5e9;
+      --primary-foreground: #f8fafc;
+      --card: #ffffff;
+      --card-foreground: #0f172a;
+      --border: #e2e8f0;
+      --green-500: #22c55e;
+      --green-900: #14532d;
+      --green-50: #f0fdf4;
+    }
+
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --background: #0f172a;
+        --foreground: #f8fafc;
+        --muted: #1e293b;
+        --muted-foreground: #94a3b8;
+        --primary: #0ea5e9;
+        --primary-foreground: #f8fafc;
+        --card: #1e293b;
+        --card-foreground: #f8fafc;
+        --border: #334155;
+        --green-900: #dcfce7;
+        --green-50: #065f46;
+      }
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background-color: var(--background);
+      color: var(--foreground);
+      line-height: 1.5;
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 2rem 1rem;
+    }
+
+    .mb-6 {
+      margin-bottom: 1.5rem;
+    }
+
+    .mb-8 {
+      margin-bottom: 2rem;
+    }
+
+    .mb-2 {
+      margin-bottom: 0.5rem;
+    }
+
+    .mb-4 {
+      margin-bottom: 1rem;
+    }
+
+    .mt-4 {
+      margin-top: 1rem;
+    }
+
+    .text-3xl {
+      font-size: 1.875rem;
+      line-height: 2.25rem;
+    }
+
+    .font-bold {
+      font-weight: 700;
+    }
+
+    .font-medium {
+      font-weight: 500;
+    }
+
+    .text-muted-foreground {
+      color: var(--muted-foreground);
+    }
+
+    .flex {
+      display: flex;
+    }
+
+    .items-center {
+      align-items: center;
+    }
+
+    .justify-between {
+      justify-content: space-between;
+    }
+
+    .gap-2 {
+      gap: 0.5rem;
+    }
+
+    .card {
+      background-color: var(--card);
+      color: var(--card-foreground);
+      border-radius: 0.5rem;
+      border: 1px solid var(--border);
+      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+    }
+
+    .card-content {
+      padding: 1.5rem;
+    }
+
+    .card-footer {
+      padding: 1.5rem;
+      display: flex;
+      justify-content: space-between;
+      border-top: 1px solid var(--border);
+    }
+
+    .button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 0.375rem;
+      font-weight: 500;
+      padding: 0.5rem 1rem;
+      background-color: var(--primary);
+      color: var(--primary-foreground);
+      border: none;
+      cursor: pointer;
+      transition: background-color 0.2s;
+      text-decoration: none;
+    }
+
+    .button:hover {
+      background-color: #0284c7;
+    }
+
+    .button-outline {
+      background-color: transparent;
+      color: var(--foreground);
+      border: 1px solid var(--border);
+    }
+
+    .button-outline:hover {
+      background-color: var(--muted);
+    }
+
+    .icon {
+      width: 1rem;
+      height: 1rem;
+      display: inline-block;
+    }
+
+    .mr-2 {
+      margin-right: 0.5rem;
+    }
+
+    .ml-2 {
+      margin-left: 0.5rem;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    .back-link {
+      display: flex;
+      align-items: center;
+      color: var(--muted-foreground);
+      margin-bottom: 1.5rem;
+    }
+
+    .back-link:hover {
+      color: var(--foreground);
+      text-decoration: none;
+    }
+
+    .tabs {
+      display: flex;
+      border-bottom: 1px solid var(--border);
+      margin-bottom: 1rem;
+    }
+
+    .tab {
+      padding: 0.75rem 1rem;
+      cursor: pointer;
+      border-bottom: 2px solid transparent;
+      font-weight: 500;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .tab.active {
+      border-bottom-color: var(--primary);
+      color: var(--primary);
+    }
+
+    .tab-content {
+      display: none;
+    }
+
+    .tab-content.active {
+      display: block;
+    }
+
+    .prose {
+      max-width: none;
+    }
+
+    .prose h1 {
+      font-size: 1.5rem;
+      margin-top: 1.5rem;
+      margin-bottom: 1rem;
+      font-weight: 700;
+    }
+
+    .prose h2 {
+      font-size: 1.25rem;
+      margin-top: 1.5rem;
+      margin-bottom: 0.75rem;
+      font-weight: 600;
+    }
+
+    .prose h3 {
+      font-size: 1.125rem;
+      margin-top: 1.25rem;
+      margin-bottom: 0.5rem;
+      font-weight: 600;
+    }
+
+    .prose p {
+      margin-bottom: 1rem;
+    }
+
+    .prose ul {
+      margin-bottom: 1rem;
+      padding-left: 1.5rem;
+    }
+
+    .prose li {
+      margin-bottom: 0.25rem;
+    }
+
+    .prose code {
+      font-family: 'Fira Code', monospace;
+      background-color: var(--muted);
+      padding: 0.125rem 0.25rem;
+      border-radius: 0.25rem;
+      font-size: 0.875rem;
+    }
+
+    .prose pre {
+      background-color: var(--muted);
+      padding: 1rem;
+      border-radius: 0.5rem;
+      overflow-x: auto;
+      margin-bottom: 1rem;
+    }
+
+    .prose pre code {
+      background-color: transparent;
+      padding: 0;
+      border-radius: 0;
+      font-size: 0.875rem;
+    }
+
+    .editor-container {
+      border: 1px solid var(--border);
+      border-radius: 0.5rem;
+      overflow: hidden;
+      height: 300px;
+    }
+
+    .output-container {
+      background-color: #000;
+      color: #fff;
+      padding: 1rem;
+      border-radius: 0.5rem;
+      font-family: 'Fira Code', monospace;
+      font-size: 0.875rem;
+      height: 150px;
+      overflow-y: auto;
+    }
+
+    .output-container .empty {
+      color: #666;
+    }
+
+    .success-message {
+      background-color: var(--green-50);
+      border: 1px solid var(--green-900);
+      color: var(--green-900);
+      padding: 1rem;
+      border-radius: 0.5rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      margin-bottom: 1rem;
+    }
+
+    .list-disc {
+      list-style-type: disc;
+      padding-left: 1.5rem;
+    }
+
+    .space-y-1 > * + * {
+      margin-top: 0.25rem;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <a href="../../6.html" class="back-link">
+      <svg xmlns="http://www.w3.org/2000/svg" class="icon mr-2" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <line x1="19" y1="12" x2="5" y2="12"></line>
+        <polyline points="12 19 5 12 12 5"></polyline>
+      </svg>
+      Back to Unit 6
+    </a>
+
+    <div class="mb-6">
+      <h1 class="text-3xl font-bold mb-2">
+        Lesson 1: if "condition" then
+      </h1>
+      <p class="text-muted-foreground">
+        Unit 6: Control Structures
+      </p>
+    </div>
+
+    <div class="tabs mb-8">
+      <div class="tab active" data-tab="lesson">
+        <svg xmlns="http://www.w3.org/2000/svg" class="icon mr-2" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"></path>
+          <path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"></path>
+        </svg>
+        Lesson Content
+      </div>
+      <div class="tab" data-tab="challenge">
+        <svg xmlns="http://www.w3.org/2000/svg" class="icon mr-2" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <polyline points="16 18 22 12 16 6"></polyline>
+          <polyline points="8 6 2 12 8 18"></polyline>
+        </svg>
+        Coding Challenge
+      </div>
+    </div>
+
+    <div class="tab-content active" id="lesson-content">
+      <div class="card">
+        <div class="card-content">
+          <div class="prose">
+            <h1>If Statements in Lua</h1>
+            <p>In Lua, the <code>if</code> statement allows you to execute code conditionally. The basic syntax is:</p>
+            <pre><code>if condition then
+    -- code to execute if condition is true
+end</code></pre>
+            <p>The condition is evaluated, and if it's true (any value other than <code>false</code> or <code>nil</code>), the code inside the if block is executed.</p>
+            <h2>Examples</h2>
+            <h3>Basic if statement:</h3>
+            <pre><code>local playerHealth = 50
+
+if playerHealth < 100 then
+    print("Player is not at full health!")
+end</code></pre>
+            <h3>Using comparison operators:</h3>
+            <ul>
+              <li>Equal to: <code>==</code></li>
+              <li>Not equal to: <code>~=</code></li>
+              <li>Greater than: <code>></code></li>
+              <li>Less than: <code><</code></li>
+              <li>Greater than or equal to: <code>>=</code></li>
+              <li>Less than or equal to: <code><=</code></li>
+            </ul>
+            <pre><code>local playerLevel = 10
+
+if playerLevel >= 10 then
+    print("Player can use advanced weapons!")
+end</code></pre>
+            <p>In Roblox, if statements are commonly used to check player conditions, part collisions, and game states.</p>
+          </div>
+        </div>
+        <div class="card-footer">
+          <div></div>
+          <button class="button" id="go-to-challenge">
+            Try the Challenge
+            <svg xmlns="http://www.w3.org/2000/svg" class="icon ml-2" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <line x1="5" y1="12" x2="19" y2="12"></line>
+              <polyline points="12 5 19 12 12 19"></polyline>
+            </svg>
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <div class="tab-content" id="challenge-content">
+      <div class="card">
+        <div class="card-content">
+          <h2 class="text-xl font-bold mb-2">Health Status Challenge</h2>
+          <p class="mb-4">Create a function that takes a player's health value and returns a status message based on the health value.</p>
+          
+          <div class="mb-4">
+            <h3 class="font-medium mb-2">Instructions:</h3>
+            <ul class="list-disc space-y-1">
+              <li>Create a function called 'getHealthStatus' that takes a number parameter 'health'</li>
+              <li>If health is 100 or greater, return 'Full Health'</li>
+              <li>If health is between 50 and 99, return 'Moderate Health'</li>
+              <li>If health is between 25 and 49, return 'Low Health'</li>
+              <li>If health is below 25, return 'Critical Health'</li>
+            </ul>
+          </div>
+
+          <div class="mb-4">
+            <h3 class="font-medium mb-2">Code:</h3>
+            <div class="editor-container" id="editor"></div>
+          </div>
+
+          <div class="mb-4">
+            <h3 class="font-medium mb-2">Output:</h3>
+            <div class="output-container" id="output">
+              <div class="empty">Run your code to see output</div>
+            </div>
+          </div>
+
+          <div id="success-message" class="success-message" style="display: none;">
+            <svg xmlns="http://www.w3.org/2000/svg" class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
+              <polyline points="22 4 12 14.01 9 11.01"></polyline>
+            </svg>
+            <span>Great job! You've completed this challenge successfully!</span>
+          </div>
+        </div>
+        <div class="card-footer">
+          <div class="flex gap-2">
+            <button class="button button-outline" id="reset-code">
+              Reset Code
+            </button>
+            <button class="button button-outline" id="show-solution">
+              Show Solution
+            </button>
+          </div>
+          <div class="flex gap-2">
+            <button class="button" id="run-code">Run Code</button>
+            <a href="../2.html" id="next-lesson" style="display: none;">
+              <button class="button">
+                Next Lesson
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon ml-2" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <line x1="5" y1="12" x2="19" y2="12"></line>
+                  <polyline points="12 5 19 12 12 19"></polyline>
+                </svg>
+              </button>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/monaco-editor/0.36.1/min/vs/loader.min.js"></script>
+  <script>
+    // Tab switching
+    const tabs = document.querySelectorAll('.tab');
+    const tabContents = document.querySelectorAll('.tab-content');
+    
+    tabs.forEach(tab => {
+      tab.addEventListener('click', () => {
+        const tabId = tab.getAttribute('data-tab');
+        
+        // Remove active class from all tabs and contents
+        tabs.forEach(t => t.classList.remove('active'));
+        tabContents.forEach(c => c.classList.remove('active'));
+        
+        // Add active class to clicked tab and corresponding content
+        tab.classList.add('active');
+        document.getElementById(`${tabId}-content`).classList.add('active');
+      });
+    });
+
+    // Go to challenge button
+    document.getElementById('go-to-challenge').addEventListener('click', () => {
+      tabs[1].click();
+    });
+
+    // Monaco editor setup
+    require.config({ paths: { 'vs': 'https://cdnjs.cloudflare.com/ajax/libs/monaco-editor/0.36.1/min/vs' }});
+    require(['vs/editor/editor.main'], function() {
+      const initialCode = `function getHealthStatus(health)
+  -- Write your code here
+  
+  return "Unknown Status"
+end
+
+-- Test your function with these values
+print(getHealthStatus(100))
+print(getHealthStatus(75))
+print(getHealthStatus(30))
+print(getHealthStatus(10))`;
+
+      const solution = `function getHealthStatus(health)
+  if health >= 100 then
+    return "Full Health"
+  elseif health >= 50 then
+    return "Moderate Health"
+  elseif health >= 25 then
+    return "Low Health"
+  else
+    return "Critical Health"
+  end
+end
+
+-- Test your function with these values
+print(getHealthStatus(100))
+print(getHealthStatus(75))
+print(getHealthStatus(30))
+print(getHealthStatus(10))`;
+
+      // Create editor
+      const editor = monaco.editor.create(document.getElementById('editor'), {
+        value: initialCode,
+        language: 'lua',
+        theme: window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? 'vs-dark' : 'vs',
+        minimap: { enabled: true },
+        scrollBeyondLastLine: false,
+        automaticLayout: true,
+        fontSize: 14,
+        fontFamily: "'Fira Code', Menlo, Monaco, 'Courier New', monospace",
+      });
+
+      // Run code button
+      document.getElementById('run-code').addEventListener('click', () => {
+        const code = editor.getValue();
+        const output = document.getElementById('output');
+        const successMessage = document.getElementById('success-message');
+        const nextLessonButton = document.getElementById('next-lesson');
+        
+        // Clear previous output
+        output.innerHTML = '';
+        successMessage.style.display = 'none';
+        
+        // Very basic simulation - in reality you'd use a Lua interpreter
+        let isCorrect = false;
+        let simulatedOutput = [];
+        
+        try {
+          if (
+            code.includes("health >= 100") &&
+            code.includes("health >= 50") &&
+            code.includes("health >= 25") &&
+            code.includes("Full Health") &&
+            code.includes("Moderate Health") &&
+            code.includes("Low Health") &&
+            code.includes("Critical Health")
+          ) {
+            // Simulate the exact output of the code
+            simulatedOutput = ["Full Health", "Moderate Health", "Low Health", "Critical Health"];
+            isCorrect = true;
+          } else {
+            // Simulate the actual output based on the code
+            if (code.includes("function") && !code.includes("end")) {
+              simulatedOutput = [`lua: [string "chunk"]:1: 'end' expected (to close 'function' at line 1) near '<eof>'`];
+            } else {
+              // Try to simulate what the function would actually return
+              const healthValues = [100, 75, 30, 10];
+              
+              for (const health of healthValues) {
+                let result = "Unknown Status";
+                
+                // Very basic simulation of code execution
+                if (code.includes("if health >= 100") && health >= 100) {
+                  result = code.match(/return\s+["']Full Health["']/i) ? "Full Health" : "Unknown Status";
+                } else if (code.includes("health >= 50") && health >= 50) {
+                  result = code.match(/return\s+["']Moderate Health["']/i) ? "Moderate Health" : "Unknown Status";
+                } else if (code.includes("health >= 25") && health >= 25) {
+                  result = code.match(/return\s+["']Low Health["']/i) ? "Low Health" : "Unknown Status";
+                } else if (code.includes("else") && health < 25) {
+                  result = code.match(/return\s+["']Critical Health["']/i) ? "Critical Health" : "Unknown Status";
+                }
+                
+                simulatedOutput.push(result);
+              }
+            }
+          }
+        } catch (error) {
+          simulatedOutput = [
+            `lua: [string "chunk"]:${Math.floor(Math.random() * 10) + 1}: unexpected error`,
+          ];
+        }
+        
+        // Display output
+        simulatedOutput.forEach(line => {
+          const div = document.createElement('div');
+          div.textContent = line;
+          output.appendChild(div);
+        });
+        
+        // Show success message if correct
+        if (isCorrect) {
+          successMessage.style.display = 'flex';
+          nextLessonButton.style.display = 'block';
+        }
+      });
+      
+      // Reset code button
+      document.getElementById('reset-code').addEventListener('click', () => {
+        editor.setValue(initialCode);
+        document.getElementById('output').innerHTML = '<div class="empty">Run your code to see output</div>';
+        document.getElementById('success-message').style.display = 'none';
+        document.getElementById('next-lesson').style.display = 'none';
+      });
+      
+      // Show solution button
+      document.getElementById('show-solution').addEventListener('click', () => {
+        editor.setValue(solution);
+      });
+    });
+  </script>
+</body>
+</html>
